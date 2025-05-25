@@ -19,7 +19,7 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 # Create the new user
-if id "$NEW_USER" &>/dev/null; then
+if getent passwd "$NEW_USER" &>/dev/null; then
   echo "User '$NEW_USER' already exists."
 else
   useradd -m -s /bin/bash "$NEW_USER"
