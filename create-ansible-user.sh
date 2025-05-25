@@ -6,6 +6,7 @@
 # Set the username for the new user
 NEW_USER="ansible"
 
+
 # Set the public SSH key for the new user
 # IMPORTANT: Replace the placeholder with the actual public key
 SSH_PUBLIC_KEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILwDUPCNDt/4fXHWjw7UK3S+D+gir1wFVnEQvnspsiTY ntaucher@gmail.com"
@@ -19,7 +20,7 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 # Create the new user
-if getent passwd "$NEW_USER" &>/dev/null; then
+if id -u "$NEW_USER" >/dev/null 2>&1; then
   echo "User '$NEW_USER' already exists."
 else
   useradd -m -s /bin/bash "$NEW_USER"
